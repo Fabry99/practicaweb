@@ -56,7 +56,7 @@
         </div>
         <?php include "p.php"; ?>
         <?php include "modalAgregar.php"; ?>
-       
+
 
 
 
@@ -89,12 +89,13 @@
 
                     <td>
                       <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editar<?php echo $fila['id']; ?>">
-                      <i class="fa fa-edit "></i></a></button>
-                      <a href="../includes/eliminar_prof.php?id=<?php echo $fila['id'] ?>" class="btn btn-danger btn-del">
-                        <i class="fa fa-trash" aria-hidden="true"></i></a>
+                        <i class="fa fa-edit "></i></a></button>
+                      <a href="#" class="btn btn-danger btn-del" onclick="confirmDelete(<?php echo $fila['id']; ?>)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </a>
                     </td>
                   </tr>
-                
+
 
                 <?php endwhile; ?>
               </tbody>
@@ -114,3 +115,25 @@
 
         </div>
         <!-- End of Page Wrapper -->
+        <script>
+  function confirmDelete(id) {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción eliminará el dato. ¿Estás seguro de continuar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirect to the delete URL with the ID
+        window.location.href = 'eliminar.php?id=' + id;
+      }
+    });
+  }
+</script>
+
+
+
+
+
